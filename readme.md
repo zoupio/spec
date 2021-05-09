@@ -10,7 +10,7 @@ the zoup spec and reference implementation will be in the public domain.
 
 ## the spec
 
-see [spec.md](spec).
+see [spec](spec.md).
 
 ## reference implementaion
 

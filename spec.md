@@ -88,7 +88,7 @@ every post **must** have one id, which
 ### url
 
 the url of a post **must** contain the id. 
-the url prefixed by `.json` **must** deliver the json of the post.
+the url suffixed by `.json` **must** deliver the json of the post.
 
 ### content_html
 

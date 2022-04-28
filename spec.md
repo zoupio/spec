@@ -48,7 +48,7 @@ the feed **should** be paginated using the `next_url` field. how so is up to the
 * `description` **should** contain the description of the zoup instance if configured
 * `home_page_url` **must** contain the instances base url
 * `feed_url` **must** contain the feeds url `/feed.json`
-* `next_url` **must** contain the next batches feed url [as specified](#feed)
+* `next_url` **must** contain the next batches feed url [as specified](#feed) if there are more entries available.
 * `icon` **should** contain a url to the zoup instances profile image with a dimension of `512×512`
 * `favicon` **shhould** contain a url to the zoup instances profile image with a dimension of `64×64`
 * `authors` **must** be an array containing an object with the property `name` containing the username of the zoup instance.

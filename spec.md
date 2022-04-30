@@ -236,6 +236,7 @@ all public api endpoints used via webbrowser by other instances **should** allow
 
 pings let zoup instances know that on another instance something has happened in relation to them. since this bears the potential for spam, these should be filtered and can be discarded.
 
+all pings **must** be done using the http method `POST`.
 all parameters **must** be url-encoded.
 
 `/ping/follow?url=<feed-url.json>`

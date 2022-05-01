@@ -50,7 +50,7 @@ the feed **should** be paginated using the `next_url` field. how so is up to the
 * `feed_url` **must** contain the feeds url `/feed.json`
 * `next_url` **must** contain the next batches feed url [as specified](#feed) if there are more entries available.
 * `icon` **should** contain a url to the zoup instances profile image with a dimension of `512×512`
-* `favicon` **shhould** contain a url to the zoup instances profile image with a dimension of `64×64`
+* `favicon` **should** contain a url to the zoup instances profile image with a dimension of `64×64`
 * `authors` **must** be an array containing an object with the property `name` containing the username of the zoup instance.
 * `items` **must** contain posts [as specified](#posts)
 
@@ -60,7 +60,7 @@ the feed **should** be paginated using the `next_url` field. how so is up to the
 {
 	"version": "https://jsonfeed.org/version/1.1",
 	"title": "Example's zoup",
-	"description": "An exampe zoup",
+	"description": "An example zoup",
 	"home_page_url": "https://zoup.example.org/",
 	"feed_url": "https://zoup.example.org/feed.json",
 	"next_url": "https://zoup.example.org/feed.json?before=<last_date_published>",
@@ -234,8 +234,9 @@ all public api endpoints used via webbrowser by other instances **should** allow
 
 ## ping
 
-pings let zoup instances know that on another instance something has happened in relation to them. since this bears the potential for spam, these should be filtered and can be discarded
+pings let zoup instances know that on another instance something has happened in relation to them. since this bears the potential for spam, these should be filtered and can be discarded.
 
+all pings **must** be done using the http method `POST`.
 all parameters **must** be url-encoded.
 
 `/ping/follow?url=<feed-url.json>`
@@ -252,7 +253,7 @@ another zoup instance has published a reaction to a post from this zoup instance
 
 ## intents
 
-intents are endpoints that let authenticated users do something to their instance. they are meant to be found by other instances via [discovery](#discovery). they are not apis and require interaction by an authenticated user. if they are accessd by an unauthenticated user, they should provide means of authentication. 
+intents are endpoints that let authenticated users do something to their instance. they are meant to be found by other instances via [discovery](#discovery). they are not apis and require interaction by an authenticated user. if they are accessed by an unauthenticated user, they should provide means of authentication.
 
 all parameters **must** be url-encoded.
 
@@ -276,7 +277,7 @@ react to a post
 
 ## discovery
 
-the zoup instances web interface [resgisters a protocol handler](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerProtocolHandler) with the scheme `web+zoup` for authorized users. third party instances can then use this to discover the zoup instances URL by loading a resource with this protocol in an iframe*. the loaded url then uses [postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to transmit the URL to the third party website.
+the zoup instances web interface [registers a protocol handler](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerProtocolHandler) with the scheme `web+zoup` for authorized users. third party instances can then use this to discover the zoup instances URL by loading a resource with this protocol in an iframe*. the loaded url then uses [postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) to transmit the URL to the third party website.
 
 \* *using custom protocol schemes do not work with fetch. even in an iframe they might break in the future.*
 
@@ -307,7 +308,7 @@ navigator.registerProtocolHandler("web+zoup", "https://zoup-a.example.org/discov
 <iframe id="discover" src="web+zoup://discover?url=https%3A%2F%2Fzoup-b.example.org%2F"></iframe>
 ```
 
-*depending on the brosers privacy settings the user might need to confirm this*
+*depending on the browsers privacy settings the user might need to confirm this*
 
 The URL is then handled by the browser and transformed into
 
@@ -316,7 +317,7 @@ https://zoup-a.example.org/discover?url=
 	web%2Bzoup%3A%2F%2Fdiscover%3Furl%3Dhttps%253A%252F%252Fzoup-b.example.org%252F
 ```
 
-3\. zoup-a decodes this input and sends a `postMessasge()` to zoup-b in the parent window
+3\. zoup-a decodes this input and sends a `postMessage()` to zoup-b in the parent window
 
 ``` javascript
 // (this should better be done by the backend)
